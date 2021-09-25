@@ -1,6 +1,10 @@
 package com.onirutla.catanddogapi.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "DOG")
@@ -19,38 +23,18 @@ public class Dog {
     @Column
     private String color;
 
-    @Column(name = "owner_id")
-    private String ownerId;
-
-    @Column(name = "owner_name")
-    private String ownerName;
-
     @Column
-    private String height;
+    private Double height;
 
     @Column(name = "created_at")
-    private String createdAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private String updatedAt;
-
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     public Dog() {
-    }
-
-    public Dog(String id, String name, String type, String color, String ownerId, String ownerName, String height, String createdAt, String updatedAt, Boolean isDeleted) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.color = color;
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-        this.height = height;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.isDeleted = isDeleted;
     }
 
     public String getId() {
@@ -85,51 +69,27 @@ public class Dog {
         this.color = color;
     }
 
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    public String getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
     }
 }
