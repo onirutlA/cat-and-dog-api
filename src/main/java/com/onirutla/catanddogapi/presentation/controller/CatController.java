@@ -1,7 +1,8 @@
 package com.onirutla.catanddogapi.presentation.controller;
 
-import com.onirutla.catanddogapi.behaviors.cat.query.GetAllCat;
 import com.onirutla.catanddogapi.behaviors.cat.command.InsertCat;
+import com.onirutla.catanddogapi.behaviors.cat.command.UpdateCat;
+import com.onirutla.catanddogapi.behaviors.cat.query.GetAllCat;
 import com.onirutla.catanddogapi.model.Cat;
 import com.onirutla.catanddogapi.presentation.response.CatDTO;
 import com.onirutla.catanddogapi.repository.CatRepository;
@@ -33,10 +34,17 @@ public class CatController {
     }
 
     @PostMapping(path = "/cat")
-    public Cat insertCat(
-            @RequestBody CatDTO requestBody
-    ) {
+    public Cat insertCat(@RequestBody CatDTO requestBody) {
         InsertCat command = new InsertCat(repository);
         return command.execute(Optional.of(requestBody.toCat()));
+    }
+
+    @PutMapping(path = "/cat/{id}")
+    public Cat updateCat(
+            @PathVariable Integer id,
+            @RequestBody CatDTO requestBody
+    ) {
+        UpdateCat command = new UpdateCat(repository, id);
+        return command.execute(Optional.ofNullable(requestBody.toCat()));
     }
 }
