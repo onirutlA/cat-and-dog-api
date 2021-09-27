@@ -1,6 +1,7 @@
 package com.onirutla.catanddogapi.presentation.controller;
 
 import com.onirutla.catanddogapi.behaviors.dog.command.InsertDog;
+import com.onirutla.catanddogapi.behaviors.dog.command.UpdateDog;
 import com.onirutla.catanddogapi.behaviors.dog.query.GetAllDog;
 import com.onirutla.catanddogapi.model.Dog;
 import com.onirutla.catanddogapi.presentation.response.DogDTO;
@@ -23,15 +24,21 @@ public class DogController {
     }
 
     @GetMapping(path = "/dog")
-    public List<DogDTO> getDogs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public List<DogDTO> getDogs(@RequestParam(value = "page",defaultValue = "0") int page, @RequestParam(value = "size",defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         GetAllDog command = new GetAllDog(repository, pageable);
         return command.execute(Optional.empty());
     }
 
     @PostMapping(path = "/dog")
-    public Dog getDogs(@RequestBody DogDTO requestBody) {
+    public Dog insertDog(@RequestBody DogDTO requestBody) {
         InsertDog command = new InsertDog(repository);
         return command.execute(Optional.of(requestBody.toDog()));
+    }
+
+    @PutMapping(path = "/dog/{id}")
+    public Dog updateDog(@PathVariable Integer id, @RequestBody DogDTO requestBody) {
+        UpdateDog command = new UpdateDog(repository, id);
+        return command.execute(Optional.ofNullable(requestBody.toDog()));
     }
 }
