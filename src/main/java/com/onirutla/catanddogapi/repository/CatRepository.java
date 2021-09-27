@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CatRepository extends JpaRepository<Cat, Integer> {
-    Page<Cat> findAll(Pageable pageable);
+    Page<Cat> findAllByIsDeletedFalseOrderById(Pageable pageable);
 }

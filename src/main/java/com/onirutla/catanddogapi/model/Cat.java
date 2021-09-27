@@ -34,6 +34,9 @@ public class Cat {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    @Column(name = "is_deleted", columnDefinition = "boolean default false", nullable = false)
+    private Boolean isDeleted;
+
     public Cat() {
     }
 
@@ -87,5 +90,17 @@ public class Cat {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
