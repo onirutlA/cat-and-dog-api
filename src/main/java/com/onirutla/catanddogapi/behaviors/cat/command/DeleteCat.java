@@ -21,7 +21,7 @@ public class DeleteCat implements BaseCommand<Cat> {
     public Cat execute(Optional<Cat> param) {
         return repository.findById(existingId).map(cat -> {
             cat.setIsDeleted(true);
-            return cat;
+            return repository.save(cat);
         }).orElseThrow();
     }
 }

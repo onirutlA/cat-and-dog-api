@@ -35,7 +35,7 @@ public class Dog {
     private LocalDateTime updatedAt;
 
     @Column(name = "is_deleted", columnDefinition = "boolean default false")
-    private Boolean isDeleted = false;
+    private Boolean isDeleted;
 
     public Dog() {
     }

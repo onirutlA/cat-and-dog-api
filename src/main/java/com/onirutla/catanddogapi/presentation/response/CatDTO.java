@@ -14,7 +14,7 @@ public class CatDTO {
 
     private Double height;
 
-    private Boolean isDeleted = false;
+    private final Boolean isDeleted = false;
 
     public CatDTO() {
     }
@@ -59,21 +59,14 @@ public class CatDTO {
         this.height = height;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
-    }
-
     public Cat toCat() {
         Cat cat = new Cat();
+        cat.setId(this.getId());
         cat.setName(this.getName());
         cat.setType(this.getType());
         cat.setColor(this.getColor());
         cat.setHeight(this.getHeight());
-        cat.setIsDeleted(this.getDeleted());
+        cat.setIsDeleted(false);
         return cat;
     }
 }
