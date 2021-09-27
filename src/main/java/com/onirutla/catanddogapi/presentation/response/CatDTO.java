@@ -4,6 +4,8 @@ import com.onirutla.catanddogapi.model.Cat;
 
 public class CatDTO {
 
+    private Integer id;
+
     private String name;
 
     private String type;
@@ -12,7 +14,17 @@ public class CatDTO {
 
     private Double height;
 
+    private Boolean isDeleted = false;
+
     public CatDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -47,12 +59,21 @@ public class CatDTO {
         this.height = height;
     }
 
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
     public Cat toCat() {
         Cat cat = new Cat();
         cat.setName(this.getName());
         cat.setType(this.getType());
         cat.setColor(this.getColor());
         cat.setHeight(this.getHeight());
+        cat.setIsDeleted(this.getDeleted());
         return cat;
     }
 }
