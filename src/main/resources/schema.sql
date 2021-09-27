@@ -7,7 +7,8 @@ CREATE TABLE CAT
     color      VARCHAR(30),
     height     DOUBLE PRECISION,
     created_at TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    is_deleted BOOLEAN DEFAULT FALSE NOT NULL
 );
 
 DROP TABLE IF EXISTS DOG;
@@ -19,5 +20,6 @@ CREATE TABLE DOG
     color      VARCHAR(30),
     height     DOUBLE PRECISION,
     created_at TIMESTAMP,
-    updated_at TIMESTAMP
-)
+    updated_at TIMESTAMP,
+    is_deleted BOOLEAN DEFAULT FALSE NOT NULL
+);

@@ -1,5 +1,6 @@
 package com.onirutla.catanddogapi.presentation.controller;
 
+import com.onirutla.catanddogapi.behaviors.cat.command.DeleteCat;
 import com.onirutla.catanddogapi.behaviors.cat.command.InsertCat;
 import com.onirutla.catanddogapi.behaviors.cat.command.UpdateCat;
 import com.onirutla.catanddogapi.behaviors.cat.query.GetAllCat;
@@ -26,7 +27,7 @@ public class CatController {
     @GetMapping(path = "/cat")
     public List<CatDTO> getCats(
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "page", defaultValue = "10") int size
+            @RequestParam(value = "size", defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
         GetAllCat command = new GetAllCat(repository, pageable);
@@ -46,5 +47,13 @@ public class CatController {
     ) {
         UpdateCat command = new UpdateCat(repository, id);
         return command.execute(Optional.ofNullable(requestBody.toCat()));
+    }
+
+    @DeleteMapping(path = "cat/{id}")
+    public Cat deleteCat(
+            @PathVariable Integer id
+    ){
+        DeleteCat command = new DeleteCat(repository, id);
+        return command.execute(Optional.empty());
     }
 }
