@@ -1,5 +1,6 @@
 package com.onirutla.catanddogapi.presentation.controller;
 
+import com.onirutla.catanddogapi.behaviors.dog.command.DeleteDog;
 import com.onirutla.catanddogapi.behaviors.dog.command.InsertDog;
 import com.onirutla.catanddogapi.behaviors.dog.command.UpdateDog;
 import com.onirutla.catanddogapi.behaviors.dog.query.GetAllDog;
@@ -40,5 +41,11 @@ public class DogController {
     public Dog updateDog(@PathVariable Integer id, @RequestBody DogDTO requestBody) {
         UpdateDog command = new UpdateDog(repository, id);
         return command.execute(Optional.ofNullable(requestBody.toDog()));
+    }
+
+    @DeleteMapping(path = "/dog/{id}")
+    public Dog deleteDog(@PathVariable Integer id){
+        DeleteDog command = new DeleteDog(repository, id);
+        return command.execute(Optional.empty());
     }
 }

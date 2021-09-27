@@ -1,6 +1,5 @@
 package com.onirutla.catanddogapi.presentation.response;
 
-import com.onirutla.catanddogapi.model.Cat;
 import com.onirutla.catanddogapi.model.Dog;
 
 public class DogDTO {
@@ -12,6 +11,8 @@ public class DogDTO {
     private String color;
 
     private Double height;
+
+    private Boolean isDeleted;
 
     public DogDTO() {
     }
@@ -48,15 +49,19 @@ public class DogDTO {
         this.height = height;
     }
 
-    public Dog toDog() {
-        Dog dog = new Dog();
-        dog.setName(this.getName());
-        dog.setType(this.getType());
-        dog.setColor(this.getColor());
-        dog.setHeight(this.getHeight());
-        return dog;
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
+    public Dog toDog() {
+        Dog dog = new Dog();
+        dog.setName(this.name);
+        dog.setType(this.type);
+        dog.setColor(this.color);
+        dog.setHeight(this.height);
+        dog.setIsDeleted(this.isDeleted);
+        return dog;
+    }
 
 
 }
