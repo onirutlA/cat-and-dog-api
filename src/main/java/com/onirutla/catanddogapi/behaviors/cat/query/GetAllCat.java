@@ -24,11 +24,12 @@ public class GetAllCat implements BaseCommand<List<CatDTO>> {
 
     @Override
     public List<CatDTO> execute(Optional<List<CatDTO>> param) {
-        Page<Cat> cats = repository.findAll(pageable);
+        Page<Cat> cats = repository.findAllByIsDeletedFalseOrderById(pageable);
         List<CatDTO> responseHolder = new ArrayList<>();
 
         for (Cat cat : cats) {
             CatDTO catDTO = new CatDTO();
+            catDTO.setId(cat.getId());
             catDTO.setName(cat.getName());
             catDTO.setType(cat.getType());
             catDTO.setColor(cat.getColor());
