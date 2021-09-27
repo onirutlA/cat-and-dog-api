@@ -14,8 +14,6 @@ public class CatDTO {
 
     private Double height;
 
-    private final Boolean isDeleted = false;
-
     public CatDTO() {
     }
 
