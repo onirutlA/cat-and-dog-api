@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-public interface DogRepository extends JpaRepository<Dog, String> {
+public interface DogRepository extends JpaRepository<Dog, Integer> {
 
     Page<Dog> findAll(Pageable pageable);
 
