@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-public class GetAllDog implements BaseCommand<List<DogDTO>> {
+public class GetAllDog implements BaseCommand<Page<Dog>> {
 
     private final DogRepository repository;
     private final Pageable pageable;
@@ -22,15 +22,7 @@ public class GetAllDog implements BaseCommand<List<DogDTO>> {
     }
 
     @Override
-    public List<DogDTO> execute(Optional<List<DogDTO>> param) {
-        Page<Dog> dogs = repository.findAll(pageable);
-
-        return dogs.map(dog -> new DogDTO(
-                dog.getId(),
-                dog.getName(),
-                dog.getType(),
-                dog.getColor(),
-                dog.getHeight())
-        ).toList();
+    public Page<Dog> execute(Optional<Page<Dog>> param) {
+        return repository.findAll(pageable);
     }
 }

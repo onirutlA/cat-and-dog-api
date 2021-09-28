@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class DogController {
@@ -31,7 +32,16 @@ public class DogController {
     ) {
         Pageable pageable = PageRequest.of(page, size);
         GetAllDog command = new GetAllDog(repository, pageable);
-        return command.execute(Optional.empty());
+        List<Dog> response = command.execute(Optional.empty()).getContent();
+        return response
+                .stream()
+                .map(dog -> new DogDTO(
+                        dog.getId(),
+                        dog.getName(),
+                        dog.getType(),
+                        dog.getColor(),
+                        dog.getHeight()
+                )).collect(Collectors.toList());
     }
 
     @PostMapping(path = "/dog")
