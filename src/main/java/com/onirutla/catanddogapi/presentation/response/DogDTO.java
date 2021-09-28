@@ -4,57 +4,42 @@ import com.onirutla.catanddogapi.model.Dog;
 
 public class DogDTO {
 
-    private Integer id;
+    private final Integer id;
 
-    private String name;
+    private final String name;
 
-    private String type;
+    private final String type;
 
-    private String color;
+    private final String color;
 
-    private Double height;
+    private final Double height;
 
-    public DogDTO() {
+    public DogDTO(Integer id, String name, String type, String color, Double height) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.color = color;
+        this.height = height;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public Double getHeight() {
         return height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
     }
 
     public Dog toDog() {

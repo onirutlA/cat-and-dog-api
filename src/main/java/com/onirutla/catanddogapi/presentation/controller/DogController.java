@@ -25,7 +25,10 @@ public class DogController {
     }
 
     @GetMapping(path = "/dog")
-    public List<DogDTO> getDogs(@RequestParam(value = "page",defaultValue = "0") int page, @RequestParam(value = "size",defaultValue = "10") int size) {
+    public List<DogDTO> getDogs(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size
+    ) {
         Pageable pageable = PageRequest.of(page, size);
         GetAllDog command = new GetAllDog(repository, pageable);
         return command.execute(Optional.empty());
@@ -44,7 +47,7 @@ public class DogController {
     }
 
     @DeleteMapping(path = "/dog/{id}")
-    public Dog deleteDog(@PathVariable Integer id){
+    public Dog deleteDog(@PathVariable Integer id) {
         DeleteDog command = new DeleteDog(repository, id);
         return command.execute(Optional.empty());
     }

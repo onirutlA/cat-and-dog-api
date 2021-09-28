@@ -25,14 +25,12 @@ public class GetAllDog implements BaseCommand<List<DogDTO>> {
     public List<DogDTO> execute(Optional<List<DogDTO>> param) {
         Page<Dog> dogs = repository.findAll(pageable);
 
-        return dogs.map(dog -> {
-            DogDTO dto = new DogDTO();
-            dto.setId(dog.getId());
-            dto.setName(dog.getName());
-            dto.setType(dog.getType());
-            dto.setColor(dog.getColor());
-            dto.setHeight(dog.getHeight());
-            return dto;
-        }).toList();
+        return dogs.map(dog -> new DogDTO(
+                dog.getId(),
+                dog.getName(),
+                dog.getType(),
+                dog.getColor(),
+                dog.getHeight())
+        ).toList();
     }
 }
