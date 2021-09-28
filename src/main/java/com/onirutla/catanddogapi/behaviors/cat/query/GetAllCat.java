@@ -25,14 +25,12 @@ public class GetAllCat implements BaseCommand<List<CatDTO>> {
     public List<CatDTO> execute(Optional<List<CatDTO>> param) {
         Page<Cat> cats = repository.findAllByIsDeletedFalseOrderById(pageable);
 
-        return cats.map(cat -> {
-            CatDTO dto = new CatDTO();
-            dto.setId(cat.getId());
-            dto.setName(cat.getName());
-            dto.setType(cat.getType());
-            dto.setColor(cat.getColor());
-            dto.setHeight(cat.getHeight());
-            return dto;
-        }).toList();
+        return cats.map(cat -> new CatDTO(
+                cat.getId(),
+                cat.getName(),
+                cat.getType(),
+                cat.getColor(),
+                cat.getHeight())
+        ).toList();
     }
 }
