@@ -52,7 +52,7 @@ public class CatController {
     @DeleteMapping(path = "cat/{id}")
     public Cat deleteCat(
             @PathVariable Integer id
-    ){
+    ) {
         DeleteCat command = new DeleteCat(repository, id);
         return command.execute(Optional.empty());
     }
