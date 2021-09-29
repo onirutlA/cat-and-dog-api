@@ -26,8 +26,8 @@ public class CatController {
 
     @GetMapping(path = "/cat")
     public List<Cat> getCats(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size
+        @RequestParam(value = "page", defaultValue = "0") int page,
+        @RequestParam(value = "size", defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
         GetAllCat command = new GetAllCat(repository, pageable);
@@ -41,18 +41,13 @@ public class CatController {
     }
 
     @PutMapping(path = "/cat/{id}")
-    public Cat updateCat(
-            @PathVariable Integer id,
-            @RequestBody CatDTO requestBody
-    ) {
+    public Cat updateCat(@PathVariable Integer id, @RequestBody CatDTO requestBody) {
         UpdateCat command = new UpdateCat(repository, id);
         return command.execute(Optional.ofNullable(requestBody.toCat()));
     }
 
     @DeleteMapping(path = "cat/{id}")
-    public Cat deleteCat(
-            @PathVariable Integer id
-    ) {
+    public Cat deleteCat(@PathVariable Integer id) {
         DeleteCat command = new DeleteCat(repository, id);
         return command.execute(Optional.empty());
     }
