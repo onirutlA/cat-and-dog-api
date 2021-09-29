@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class CatController {
@@ -31,7 +32,16 @@ public class CatController {
     ) {
         Pageable pageable = PageRequest.of(page, size);
         GetAllCat command = new GetAllCat(repository, pageable);
-        return command.execute(Optional.empty());
+        List<Cat> response = command.execute(Optional.empty());
+        return response
+                .stream()
+                .map(cat -> new CatDTO(
+                        cat.getId(),
+                        cat.getName(),
+                        cat.getType(),
+                        cat.getColor(),
+                        cat.getHeight()
+                )).collect(Collectors.toUnmodifiableList());
     }
 
     @PostMapping(path = "/cat")
