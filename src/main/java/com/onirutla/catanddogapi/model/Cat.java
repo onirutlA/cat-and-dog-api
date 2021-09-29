@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cat")
@@ -38,6 +39,17 @@ public class Cat {
     private Boolean isDeleted;
 
     public Cat() {
+    }
+
+    public Cat(Integer id, String name, String type, String color, Double height, LocalDateTime createdAt, LocalDateTime updatedAt, Boolean isDeleted) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.color = color;
+        this.height = height;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.isDeleted = isDeleted;
     }
 
     public Integer getId() {
@@ -80,7 +92,40 @@ public class Cat {
         this.height = height;
     }
 
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cat cat = (Cat) o;
+        return id.equals(cat.id) && name.equals(cat.name) && type.equals(cat.type) && color.equals(cat.color) && height.equals(cat.height) && Objects.equals(createdAt, cat.createdAt) && Objects.equals(updatedAt, cat.updatedAt) && Objects.equals(isDeleted, cat.isDeleted);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, color, height, createdAt, updatedAt, isDeleted);
     }
 }
