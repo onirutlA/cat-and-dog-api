@@ -25,7 +25,7 @@ public class CatController {
     }
 
     @GetMapping(path = "/cat")
-    public List<CatDTO> getCats(
+    public List<Cat> getCats(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size
     ) {
