@@ -41,7 +41,7 @@ public class DogController {
                         dog.getType(),
                         dog.getColor(),
                         dog.getHeight()
-                )).collect(Collectors.toList());
+                )).collect(Collectors.toUnmodifiableList());
     }
 
     @PostMapping(path = "/dog")

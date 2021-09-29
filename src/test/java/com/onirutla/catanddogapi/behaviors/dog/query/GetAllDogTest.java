@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class GetAllDogTest {
 
@@ -36,6 +36,7 @@ class GetAllDogTest {
 
         for (int i = 0; i < 10; i++) {
             Dog dog = new Dog();
+            dog.setId(i);
             dog.setName("testName");
             dog.setType("testType");
             dog.setColor("testColor");
@@ -57,5 +58,8 @@ class GetAllDogTest {
         Assert.notNull(expectedResult, "should not be null");
         Assert.isTrue(expectedResult.size() > 0, "dog should be more than 0");
         Assert.isTrue(expectedResult.size() == dogs.size(), "expected size should be the same as dogs");
+
+        // Verify
+        verify(repository, times(1)).findAll(pageable);
     }
 }
