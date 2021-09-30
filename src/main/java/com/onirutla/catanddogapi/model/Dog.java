@@ -121,7 +121,7 @@ public class Dog {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dog dog = (Dog) o;
-        return id.equals(dog.id) && name.equals(dog.name) && type.equals(dog.type) && color.equals(dog.color) && height.equals(dog.height) && Objects.equals(createdAt, dog.createdAt) && Objects.equals(updatedAt, dog.updatedAt) && Objects.equals(isDeleted, dog.isDeleted);
+        return Objects.equals(id, dog.id) && Objects.equals(name, dog.name) && Objects.equals(type, dog.type) && Objects.equals(color, dog.color) && Objects.equals(height, dog.height) && Objects.equals(createdAt, dog.createdAt) && Objects.equals(updatedAt, dog.updatedAt) && Objects.equals(isDeleted, dog.isDeleted);
     }
 
     @Override
