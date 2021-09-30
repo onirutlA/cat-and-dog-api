@@ -121,7 +121,7 @@ public class Cat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cat cat = (Cat) o;
-        return id.equals(cat.id) && name.equals(cat.name) && type.equals(cat.type) && color.equals(cat.color) && height.equals(cat.height) && Objects.equals(createdAt, cat.createdAt) && Objects.equals(updatedAt, cat.updatedAt) && Objects.equals(isDeleted, cat.isDeleted);
+        return Objects.equals(id, cat.id) && Objects.equals(name, cat.name) && Objects.equals(type, cat.type) && Objects.equals(color, cat.color) && Objects.equals(height, cat.height) && Objects.equals(createdAt, cat.createdAt) && Objects.equals(updatedAt, cat.updatedAt) && Objects.equals(isDeleted, cat.isDeleted);
     }
 
     @Override
