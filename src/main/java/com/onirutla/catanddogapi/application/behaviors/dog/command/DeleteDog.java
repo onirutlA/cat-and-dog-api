@@ -18,7 +18,7 @@ public class DeleteDog implements BaseCommand<Dog> {
 
     @Override
     public Dog execute(Optional<Dog> param) {
-        return repository.findById(existingId).map(dog -> {
+        return repository.findDogByIsDeletedIsFalseAndId(existingId).map(dog -> {
             dog.setIsDeleted(true);
             return repository.save(dog);
         }).orElseThrow();

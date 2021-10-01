@@ -40,9 +40,9 @@ class DeleteDogTest {
     }
 
     @Test
-    void UpdateDog_WithFullData_ShouldReturnSuccess() {
+    void DeleteDog_WithFullData_ShouldReturnSuccess() {
         // Arrange
-        when(dogRepository.findById(existingDog.getId())).thenReturn(Optional.of(existingDog));
+        when(dogRepository.findDogByIsDeletedIsFalseAndId(existingDog.getId())).thenReturn(Optional.of(existingDog));
         when(dogRepository.save(deletedDog)).thenReturn(deletedDog);
 
         // Act
@@ -54,7 +54,7 @@ class DeleteDogTest {
         Assert.isTrue(expectedResult.getIsDeleted(), "isDeleted expected should be true");
         Assert.isTrue(expectedResult.getIsDeleted().equals(existingDog.getIsDeleted()), "expected must be the same as existing");
 
-        verify(dogRepository, times(1)).findById(existingDog.getId());
+        verify(dogRepository, times(1)).findDogByIsDeletedIsFalseAndId(existingDog.getId());
         verify(dogRepository, times(1)).save(existingDog);
     }
 }

@@ -48,11 +48,10 @@ class GetAllDogTest {
     @Test
     public void GetAllDogs_ShouldReturnSuccess(){
         // Arrange
-        Page<Dog> page = new PageImpl<>(dogs);
-        when(repository.findAll(pageable)).thenReturn(page);
+        when(repository.findAllByIsDeletedFalseOrderById(pageable)).thenReturn(dogs);
 
         // Act
-        List<Dog> expectedResult = getAllDog.execute(Optional.empty()).getContent();
+        List<Dog> expectedResult = getAllDog.execute(Optional.empty());
 
         // Assert
         Assert.notNull(expectedResult, "should not be null");
@@ -60,6 +59,6 @@ class GetAllDogTest {
         Assert.isTrue(expectedResult.size() == dogs.size(), "expected size should be the same as dogs");
 
         // Verify
-        verify(repository, times(1)).findAll(pageable);
+        verify(repository, times(1)).findAllByIsDeletedFalseOrderById(pageable);
     }
 }
