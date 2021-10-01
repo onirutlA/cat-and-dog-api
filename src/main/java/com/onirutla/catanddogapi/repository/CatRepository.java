@@ -14,6 +14,6 @@ import java.util.Optional;
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public interface CatRepository extends JpaRepository<Cat, Integer> {
     List<Cat> findAllByIsDeletedFalseOrderById(Pageable pageable);
-
+    Optional<Cat> findCatByIsDeletedIsFalseAndId(Integer id);
     Optional<Cat> findById(Integer existingId);
 }
