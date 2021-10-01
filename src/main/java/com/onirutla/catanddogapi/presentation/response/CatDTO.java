@@ -1,6 +1,6 @@
 package com.onirutla.catanddogapi.presentation.response;
 
-import com.onirutla.catanddogapi.model.Cat;
+import com.onirutla.catanddogapi.application.model.Cat;
 
 public class CatDTO {
 

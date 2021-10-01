@@ -1,13 +1,12 @@
 package com.onirutla.catanddogapi.presentation.controller;
 
-import com.onirutla.catanddogapi.behaviors.dog.command.DeleteDog;
-import com.onirutla.catanddogapi.behaviors.dog.command.InsertDog;
-import com.onirutla.catanddogapi.behaviors.dog.command.UpdateDog;
-import com.onirutla.catanddogapi.behaviors.dog.query.GetAllDog;
-import com.onirutla.catanddogapi.model.Dog;
+import com.onirutla.catanddogapi.application.behaviors.dog.command.DeleteDog;
+import com.onirutla.catanddogapi.application.behaviors.dog.command.InsertDog;
+import com.onirutla.catanddogapi.application.behaviors.dog.command.UpdateDog;
+import com.onirutla.catanddogapi.application.behaviors.dog.query.GetAllDog;
+import com.onirutla.catanddogapi.application.model.Dog;
 import com.onirutla.catanddogapi.presentation.response.DogDTO;
 import com.onirutla.catanddogapi.repository.DogRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class DogController {
 
     private final DogRepository repository;
 
-    public DogController(@Autowired DogRepository repository) {
+    public DogController(DogRepository repository) {
         this.repository = repository;
     }
 

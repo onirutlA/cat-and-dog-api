@@ -1,13 +1,12 @@
 package com.onirutla.catanddogapi.presentation.controller;
 
-import com.onirutla.catanddogapi.behaviors.cat.command.DeleteCat;
-import com.onirutla.catanddogapi.behaviors.cat.command.InsertCat;
-import com.onirutla.catanddogapi.behaviors.cat.command.UpdateCat;
-import com.onirutla.catanddogapi.behaviors.cat.query.GetAllCat;
-import com.onirutla.catanddogapi.model.Cat;
+import com.onirutla.catanddogapi.application.behaviors.cat.command.DeleteCat;
+import com.onirutla.catanddogapi.application.behaviors.cat.command.InsertCat;
+import com.onirutla.catanddogapi.application.behaviors.cat.command.UpdateCat;
+import com.onirutla.catanddogapi.application.behaviors.cat.query.GetAllCat;
+import com.onirutla.catanddogapi.application.model.Cat;
 import com.onirutla.catanddogapi.presentation.response.CatDTO;
 import com.onirutla.catanddogapi.repository.CatRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class CatController {
 
     private final CatRepository repository;
 
-    public CatController(@Autowired CatRepository repository) {
+    public CatController(CatRepository repository) {
         this.repository = repository;
     }
 
