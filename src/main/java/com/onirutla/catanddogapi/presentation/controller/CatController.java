@@ -5,14 +5,17 @@ import com.onirutla.catanddogapi.application.behaviors.cat.command.InsertCat;
 import com.onirutla.catanddogapi.application.behaviors.cat.command.UpdateCat;
 import com.onirutla.catanddogapi.application.behaviors.cat.query.GetAllCat;
 import com.onirutla.catanddogapi.application.model.Cat;
+import com.onirutla.catanddogapi.presentation.BaseResponse;
 import com.onirutla.catanddogapi.presentation.response.CatDTO;
 import com.onirutla.catanddogapi.repository.CatRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class CatController {
@@ -24,30 +27,66 @@ public class CatController {
     }
 
     @GetMapping(path = "/cat")
-    public List<Cat> getCats(
+    public BaseResponse<List<CatDTO>> getCats(
         @RequestParam(value = "page", defaultValue = "0") int page,
         @RequestParam(value = "size", defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
+
         GetAllCat command = new GetAllCat(repository, pageable);
-        return command.execute(Optional.empty());
+        List<CatDTO> dtos = command.execute(Optional.empty())
+                .stream()
+                .map(cat -> new CatDTO(
+                        cat.getId(),
+                        cat.getName(),
+                        cat.getType(),
+                        cat.getColor(),
+                        cat.getHeight()
+                )).collect(Collectors.toUnmodifiableList());
+
+        BaseResponse<List<CatDTO>> response = new BaseResponse<>();
+        response.setResult(dtos);
+        response.setStatusCode(HttpStatus.OK.toString());
+        response.setMessage("Successfull length: " + dtos.size());
+
+        return response;
     }
 
     @PostMapping(path = "/cat")
-    public Cat insertCat(@RequestBody CatDTO requestBody) {
+    public BaseResponse<CatDTO> insertCat(@RequestBody CatDTO requestBody) {
         InsertCat command = new InsertCat(repository);
-        return command.execute(Optional.of(requestBody.toCat()));
+        Cat cat = command.execute(Optional.of(requestBody.toCat()));
+        CatDTO dto = new CatDTO(cat.getId(), cat.getName(), cat.getType(), cat.getColor(), cat.getHeight());
+
+        BaseResponse<CatDTO> response = new BaseResponse<>();
+        response.setResult(dto);
+        response.setStatusCode(HttpStatus.CREATED.toString());
+        response.setMessage("Cat is successfully inserted");
+
+        return response;
     }
 
     @PutMapping(path = "/cat/{id}")
-    public Cat updateCat(@PathVariable Integer id, @RequestBody CatDTO requestBody) {
+    public BaseResponse<Void> updateCat(@PathVariable Integer id, @RequestBody CatDTO requestBody) {
         UpdateCat command = new UpdateCat(repository, id);
-        return command.execute(Optional.ofNullable(requestBody.toCat()));
+        command.execute(Optional.of(requestBody.toCat()));
+
+        BaseResponse<Void> response = new BaseResponse<>();
+        response.setMessage("Cat is successfully updated");
+        response.setStatusCode(HttpStatus.OK.toString());
+
+        return response;
     }
 
     @DeleteMapping(path = "cat/{id}")
-    public Cat deleteCat(@PathVariable Integer id) {
+    public BaseResponse<Void> deleteCat(@PathVariable Integer id) {
         DeleteCat command = new DeleteCat(repository, id);
-        return command.execute(Optional.empty());
+        command.execute(Optional.empty());
+
+        BaseResponse<Void> response = new BaseResponse<>();
+        response.setMessage("Cat is successfully deleted");
+        response.setStatusCode(HttpStatus.OK.toString());
+
+        return response;
     }
 }
