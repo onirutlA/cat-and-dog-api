@@ -39,9 +39,9 @@ class DeleteCatTest {
     }
 
     @Test
-    void UpdateCat_WithFullData_ShouldReturnSuccess() {
+    void Delete_WithFullData_ShouldReturnSuccess() {
         // Arrange
-        when(catRepository.findById(existingCat.getId())).thenReturn(Optional.of(existingCat));
+        when(catRepository.findCatByIsDeletedIsFalseAndId(existingCat.getId())).thenReturn(Optional.of(existingCat));
         when(catRepository.save(deletedCat)).thenReturn(deletedCat);
 
         // Act
@@ -53,7 +53,7 @@ class DeleteCatTest {
         Assert.isTrue(expectedResult.getIsDeleted(), "isDeleted expected should be true");
         Assert.isTrue(expectedResult.getIsDeleted().equals(existingCat.getIsDeleted()), "expected must be the same as existing");
 
-        verify(catRepository, times(1)).findById(existingCat.getId());
+        verify(catRepository, times(1)).findCatByIsDeletedIsFalseAndId(existingCat.getId());
         verify(catRepository, times(1)).save(existingCat);
     }
 }
