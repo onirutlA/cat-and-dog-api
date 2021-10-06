@@ -77,10 +77,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -112,10 +109,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -137,10 +131,7 @@ Response:
     "name": "String",
     "type": "String",
     "color": "String",
-    "height": "Double",
-    "createdAt": "Timestamp",
-    "updatedAt": "Timestamp",
-    "isDeleted": "Boolean"
+    "height": "Double"
   }
 ]
 ```
@@ -163,10 +154,7 @@ Response:
     "name": "String",
     "type": "String",
     "color": "String",
-    "height": "Double",
-    "createdAt": "Timestamp",
-    "updatedAt": "Timestamp",
-    "isDeleted": "Boolean"
+    "height": "Double"
   }
 ]
 ```
@@ -188,10 +176,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -212,10 +197,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -247,10 +229,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -282,10 +261,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -306,10 +282,7 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
 
@@ -330,9 +303,6 @@ Response:
   "name": "String",
   "type": "String",
   "color": "String",
-  "height": "Double",
-  "createdAt": "Timestamp",
-  "updatedAt": "Timestamp",
-  "isDeleted": "Boolean"
+  "height": "Double"
 }
 ```
